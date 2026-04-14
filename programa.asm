@@ -1,4 +1,4 @@
-; programa.asm — Laboratorio Post1 Unidad 4
+; programa.asm - Laboratorio Post1 Unidad 4
 
 CR          EQU 0Dh
 LF          EQU 0Ah
@@ -23,7 +23,8 @@ section .text
     global main
 
 main:
-    mov ax, @data
+    push ds
+    mov ax, seg bienvenida
     mov ds, ax
 
     mov ah, 09h
@@ -47,10 +48,11 @@ main:
     mov ah, 02h
     mov dl, 0Dh
     int 21h
+    mov ah, 02h
     mov dl, 0Ah
     int 21h
 
-    lea si, tabla_bytes
+    mov si, tabla_bytes
     mov cx, ITERACIONES
 
 imprimir_tabla:
@@ -70,6 +72,7 @@ imprimir_tabla:
     mov ah, 02h
     mov dl, 0Dh
     int 21h
+    mov ah, 02h
     mov dl, 0Ah
     int 21h
 
